@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./node_modules/axios/dist/axios.min.js"></script>
+    <style>
+        input{
+            height: 100px;
+            width: 400px;
+            font-size: 50px;
+        }
+        *{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <form action="./backend.php" method="post"><br/><br/><br/><br/>
+        <input type="text" class="name" placeholder="name">
+        <input type="text" class="email" placeholder="email">
+        <input type="submit" value="Submit" name="submit">
+    </form>
+    <div class="box"></div>
+    <script>
+        let button = document.querySelector("button")
+        let box = document.querySelector(".box")
+        let form = document.querySelector("form")
+        let namet = document.querySelector(".name")
+        let emailt = document.querySelector(".email")
+        form.addEventListener("submit", (e) => {submitData(e)})
+        function submitData(e){
+            e.preventDefault()
+            axios.post("backend.php", { name: namet.value, email: emailt.value }).then(response => {
+                console.log(response);
+            })
+        }
+    </script>
+</body>
+</html>
